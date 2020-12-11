@@ -1,0 +1,3 @@
+[deps]
+Documenter = "e30172f5-a6a5-5a46-863b-614d45cd2de4"
+GorJulia = "559babd7-00d8-44ec-aa40-f5ef8a67d642"

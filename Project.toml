@@ -1,0 +1,13 @@
+name = "GorJulia"
+uuid = "559babd7-00d8-44ec-aa40-f5ef8a67d642"
+authors = ["Florian Zink <zink.florian@gmail.com> and contributors"]
+version = "0.1.0"
+
+[compat]
+julia = "1"
+
+[extras]
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+
+[targets]
+test = ["Test"]
