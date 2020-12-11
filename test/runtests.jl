@@ -1,6 +1,11 @@
-using GorJulia
 using Test
+using GorJulia
 
-@testset "GorJulia.jl" begin
-    # Write your tests here.
-end
+include("test_gorfile.jl")
+#include("test_parquetfile.jl")
+include("test_verifyorder.jl")
+include("test_merge.jl")
+include("test_join.jl")
+include("test_map.jl")
+include("test_aggregate.jl")
+include("test_groupby.jl")

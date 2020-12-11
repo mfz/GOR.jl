@@ -25,7 +25,7 @@ version = "0.26.0"
 
 [[GorJulia]]
 path = ".."
-uuid = "559babd7-00d8-44ec-aa40-f5ef8a67d642"
+uuid = "7e057e01-19b1-480a-9799-281a76ed4e64"
 version = "0.1.0"
 
 [[IOCapture]]
