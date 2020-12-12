@@ -12,7 +12,7 @@ struct ParquetFileIter{I} <: AbstractGorIter{I}
 end
 
 
-Base.eltype(::Type{Parquet.RecordCursor{T}}) where {T} = T
+#Base.eltype(::Type{Parquet.RecordCursor{T}}) where {T} = T
 Tables.schema(p::Parquet.RecordCursor{T}) where {T} = Tables.Schema(T)
 
 
