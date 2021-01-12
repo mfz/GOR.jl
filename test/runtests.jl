@@ -1,5 +1,5 @@
 using Test
-using GorJulia
+using GOR
 
 include("test_gorfile.jl")
 #include("test_parquetfile.jl")
