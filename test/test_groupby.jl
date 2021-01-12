@@ -9,7 +9,7 @@
 
     di = Tables.namedtupleiterator(df)
 
-    g = di |> GorJulia.groupby(1, [:Gene]; sum = Sum(:Value), count = Count())
+    g = di |> GOR.groupby(1, [:Gene]; sum = Sum(:Value), count = Count())
     
     @test g |> eltype == 
         NamedTuple{(:Chrom, :bpStart, :bpEnd, :Gene, :sum, :count),Tuple{String,Int64,Int64,String,Float64,Int64}}

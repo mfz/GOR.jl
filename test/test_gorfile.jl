@@ -5,7 +5,7 @@
 
     @testset "GorFile" begin
     
-        left = GorFile(GorJulia.pkgpath("test", "left.gor"))
+        left = GorFile(GOR.pkgpath("test", "left.gor"))
 
         @test eltype(left) == NamedTuple{(:Chrom, :Pos, :Val),Tuple{String,Int64,String}}
 
@@ -16,7 +16,7 @@
     @testset "Table interface" begin
 
         using Tables
-        left = GorFile(GorJulia.pkgpath("test", "left.gor"))
+        left = GorFile(GOR.pkgpath("test", "left.gor"))
         
         @test Tables.istable(left)
         @test Tables.rowaccess(left)
