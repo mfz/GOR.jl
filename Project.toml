@@ -1,4 +1,4 @@
-name = "GorJulia"
+name = "GOR"
 uuid = "7e057e01-19b1-480a-9799-281a76ed4e64"
 authors = ["Florian Zink <zink.florian@gmail.com> and contributors"]
 version = "0.1.0"

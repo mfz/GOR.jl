@@ -3,7 +3,7 @@
 #
 # PROBLEM: Type inference in NamedTuples does not work for Union{Missing, T} types
 
-export gormap
+export map
 
 struct Map{I,F,M} <: AbstractGorIter{I}
     rows::I
@@ -11,8 +11,8 @@ struct Map{I,F,M} <: AbstractGorIter{I}
 end
 
 """
-    gormap(rows, func)
-    rows |> gormap(func)
+    map(rows, func)
+    rows |> map(func)
 
 Apply function `func` to elements of genome ordered stream `rows`.
 The function `func` should return a `NamedTuple`.
@@ -21,13 +21,13 @@ NOTE: Julia cannot infer the type of NamedTuples with `Union{Missing,T}`.
 This means that if the input stream `rows` has columns of type `Union{Missing,T}`,
 the pipeline probably fails. 
 """
-gormap(rows, func) = Map{typeof(rows), typeof(func),
+map(rows, func) = Map{typeof(rows), typeof(func),
                          Base.return_types(func, (eltype(rows),))[1]}(rows, func)
-gormap(func) = rows -> gormap(rows, func)
+map(func) = rows -> map(rows, func)
 
 
 
-#transform = gormap
+#transform = map
 
 #mutate(rows, func) = gormap(rows, row -> merge(row, func(row)))
 #mutate(func) = rows -> mutate(rows, func)

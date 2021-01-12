@@ -3,7 +3,7 @@
     using Tables, DataFrames
     df = Tables.namedtupleiterator(DataFrame(Chrom = repeat(["chr1"], 3), Pos = [1,2,3]))
 
-    m = df |> gormap(x -> merge(x, (Value = x.Pos * 2,)))
+    m = df |> GOR.map(x -> Base.merge(x, (Value = x.Pos * 2,)))
 
     @test length(m) == 3
     @test m |> collect |> length == 3

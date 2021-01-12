@@ -1,6 +1,6 @@
 
 
-export gorfilter
+export filter
 
 struct Filter{I,F}
     rows::I
@@ -8,13 +8,13 @@ struct Filter{I,F}
 end
 
 """
-    gorfilter(rows, predicate)
-    rows |> gorfilter(predicate)
+    filter(rows, predicate)
+    rows |> filter(predicate)
 
 Filter `rows` to include only rows that fulfil `predicate`.
 """
-gorfilter(rows, predicate) = Filter{typeof(rows), typeof(predicate)}(rows, predicate)
-gorfilter(predicate) = rows -> gorfilter(rows, predicate)
+filter(rows, predicate) = Filter{typeof(rows), typeof(predicate)}(rows, predicate)
+filter(predicate) = rows -> filter(rows, predicate)
 
 Base.IteratorEltype(::Type{Filter{I,F}}) where {I,F} = Base.HasEltype()
 Base.eltype(::Type{Filter{I,F}}) where {I,F} = Base.eltype(I)

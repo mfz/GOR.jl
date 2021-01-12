@@ -1,14 +1,14 @@
-using GorJulia
+using GOR
 using Documenter
 
 makedocs(;
-    modules=[GorJulia],
+    modules=[GOR],
     authors="Florian Zink <zink.florian@gmail.com> and contributors",
-    repo="https://github.com/mfz/GorJulia.jl/blob/{commit}{path}#L{line}",
-    sitename="GorJulia.jl",
+    repo="https://github.com/mfz/GOR.jl/blob/{commit}{path}#L{line}",
+    sitename="GOR.jl",
     format=Documenter.HTML(;
         prettyurls=get(ENV, "CI", "false") == "true",
-        canonical="https://mfz.github.io/GorJulia.jl",
+        canonical="https://mfz.github.io/GOR.jl",
         assets=String[],
     ),
     pages=[
@@ -17,5 +17,5 @@ makedocs(;
 )
 
 deploydocs(;
-    repo="github.com/mfz/GorJulia.jl",
+    repo="github.com/mfz/GOR.jl",
 )

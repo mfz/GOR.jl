@@ -1,17 +1,17 @@
-# GorJulia.jl Documentation
+# GOR.jl Documentation
 
 ```@contents
 ```
 
 ## Purpose
 
-GorJulia is a Julia library to operate on genome ordered
+GOR.jl is a Julia library to operate on genome ordered
 streams. Elements of genome ordered streams are sorted by chromosome
 and position, the first two items of each row element. Streaming
 allows operations on data sets that are larger than available memory,
 and genomic order speeds up relational operations like joins.
 
-GorJulia supports the `Tables.jl` interface. This means it works with
+GOR.jl supports the `Tables.jl` interface. This means it works with
 all sources and sinks that conform to the `Tables.jl` interface, e.g.
 
 - CSV files,
@@ -21,7 +21,7 @@ all sources and sinks that conform to the `Tables.jl` interface, e.g.
 
 and are ordered by chromosome and position.
 
-GorJulia allows creation of complex pipelines by joining together
+GOR.jl allows creation of complex pipelines by joining together
 operators using the `|>` syntax. Each operator is implemented as a
 Julia iterator that is parameterized on input and output types. This
 allows for easy extension of the library by user-defined operations.
@@ -43,15 +43,15 @@ write_parquet(rows, path)
 
 ```@docs
 verifyorder(rows)
-GorJulia.select(rows, columns::Symbol...)
-GorJulia.gorfilter(rows, predicate)
-GorJulia.rename(rows, args::Pair...)
-GorJulia.mutate(rows, columns::Tuple, func)
+GOR.select(rows, columns::Symbol...)
+GOR.filter(rows, predicate)
+GOR.rename(rows, args::Pair...)
+GOR.mutate(rows, columns::Tuple, func)
 
-gormerge(left, right)
-gormap(rows, func)
+GOR.merge(left, right)
+GOR.map(rows, func)
 
-gorjoin(left, right)
+GOR.join(left, right)
 ```
 
 ## Grouping

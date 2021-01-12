@@ -7,7 +7,7 @@
 #
 
 
-export gormerge
+export merge
 
 using Tables
 
@@ -27,16 +27,16 @@ Tables.rows(m::Merge{L,R,M}) where {L,R,M} = m
 
 
 """
-    gormerge(left, right)
-    left |> gormerge(right)
+    merge(left, right)
+    left |> merge(right)
 
 Merge `left` and `right` genome ordered streams.
 
 Output stream contains union of columns with type promotion
 """
-gormerge(left, right) = Merge{typeof(left), typeof(right),
+merge(left, right) = Merge{typeof(left), typeof(right),
                               union_type(eltype(left), eltype(right))}(left, right)
-gormerge(right) = left -> gormerge(left, right)
+merge(right) = left -> merge(left, right)
 
 
 function Base.iterate(m::Merge{L,R,M}) where {L,R,M}

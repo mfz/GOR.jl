@@ -24,7 +24,7 @@
 
 
 
-export gorjoin
+export join
 
 using Tables
 using DataStructures: heappush!, heappop!
@@ -79,9 +79,9 @@ lendcol = (snpsnp = 2, snpseg = 2, segsnp = 3, segseg = 3)
 rendcol = (snpsnp = 2, snpseg = 3, segsnp = 2, segseg = 3)
 
 """ 
-    gorjoin(left, right; kind = :snpsnp, leftjoin = false, window = 0)
+    join(left, right; kind = :snpsnp, leftjoin = false, window = 0)
 
-    left |> gorjoin(right; kind = :snpsnp, leftjoin = false, window = 0)
+    left |> join(right; kind = :snpsnp, leftjoin = false, window = 0)
 
 Join genome ordered streams `left` and `right` on `(elt[1], elt[2])`.
 
@@ -91,7 +91,7 @@ Join genome ordered streams `left` and `right` on `(elt[1], elt[2])`.
 - `kind::Symbol`: how should overlap be determined (:snpsnp, :snpseg, :segsnp, :segseg)
 - `window::Int`: allow `window` base pairs difference in position   
 """
-function gorjoin(left, right; kind = :snpsnp, leftjoin = false, window = 0)
+function join(left, right; kind = :snpsnp, leftjoin = false, window = 0)
     @assert kind in (:snpsnp, :snpseg, :segsnp, :segseg) "Unknown join kind: $kind"
     
     leftjoin ?
@@ -100,8 +100,8 @@ function gorjoin(left, right; kind = :snpsnp, leftjoin = false, window = 0)
 end
 
 
-gorjoin(right; kind = :snpsnp, leftjoin = false, window = 0) =
-    left -> gorjoin(left, right; leftjoin = leftjoin, window = window, kind = kind)
+join(right; kind = :snpsnp, leftjoin = false, window = 0) =
+    left -> join(left, right; leftjoin = leftjoin, window = window, kind = kind)
     
 
 

@@ -17,7 +17,7 @@
                                               val1 = [1.0, 2, missing],
                                               val2 = [1,2,3]))
     
-    m2 = df1 |> gormerge(df2)
+    m2 = df1 |> GOR.merge(df2)
 
     @test eltype(m2) == NamedTuple{(:Chrom, :Pos, :val1, :val2),Tuple{Int64,Int64,Union{Missing, Float64},Union{Missing, Int64}}}
                                   

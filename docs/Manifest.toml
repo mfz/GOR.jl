@@ -117,7 +117,7 @@ version = "0.4.2"
 deps = ["Random"]
 uuid = "9fa8497b-333b-5362-9e8d-4d0656e87820"
 
-[[GorJulia]]
+[[GOR]]
 deps = ["CSV", "DataFrames", "DataStructures", "Documenter", "Libz", "Mmap", "Parquet", "Reexport", "Tables", "Test"]
 path = ".."
 uuid = "7e057e01-19b1-480a-9799-281a76ed4e64"
