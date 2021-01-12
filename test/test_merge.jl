@@ -4,7 +4,7 @@
     left = GorFile("left.gor")
     right = GorFile("right.gor")
 
-    m = left |> gormerge(right)
+    m = left |> GOR.merge(right)
     @test m |> collect |> length == 200
 
     @test eltype(m) == NamedTuple{(:Chrom, :Pos, :Val), Tuple{String, Int64, String}}
