@@ -25,7 +25,7 @@ function mutate(rows, cols::Tuple, func)
     sch = Tables.schema(rows)
     names = sch.names
     types = sch.types
-    name2type = Dict(zip(names, types))
+    name2type = Dict{Symbol, Any}(zip(names, types))
     fnames = cols
     ftypes = Base.return_types(func, (eltype(rows),))[1].parameters
     for (n,t) in zip(fnames, ftypes)

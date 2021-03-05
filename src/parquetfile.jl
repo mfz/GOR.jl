@@ -42,4 +42,4 @@ end
 Write genome ordered stream `rows` as Parquet file to `path`.
 """
 write_parquet(rows, path) = Parquet.write_parquet(path, rows)
-write_parquet(path) = rows -> GorJulia.write_parquet(rows, path)
+write_parquet(path) = rows -> GOR.write_parquet(rows, path)

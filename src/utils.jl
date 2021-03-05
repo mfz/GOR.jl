@@ -14,7 +14,7 @@ top(n) = rows -> Iterators.take(rows, n)
 
 Tables.istable(t::Iterators.Take{I}) where {I} = true
 Tables.rowaccess(t::Iterators.Take{I}) where {I} = true
-Tables.schema(t::Iterators.Take{I}) where {I} = Tables.Schema(eltype(I))
+Tables.schema(t::Iterators.Take{I}) where {I} = Tables.schema(t.xs) #Tables.Schema(eltype(I))
 
 
 

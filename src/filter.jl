@@ -22,7 +22,7 @@ Base.IteratorSize(::Type{Filter{I,F}}) where {I,F} = Base.SizeUnknown()
 
 Tables.istable(m::Filter{I,F}) where {I,F} = true
 Tables.rowaccess(m::Filter{I,F}) where {I,F} = true
-Tables.schema(m::Filter{I,F}) where {I,F} = Tables.Schema(I)
+Tables.schema(m::Filter{I,F}) where {I,F} = Tables.schema(m.rows)
 
 function Base.iterate(m::Filter{I,F}) where {I,F}
     elt_s = iterate(m.rows)
