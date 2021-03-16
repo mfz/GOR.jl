@@ -224,7 +224,7 @@ Tables.schema(g::GorzFile{OT}) where {OT} = Tables.Schema(OT)
 function Base.iterate(g::GorzFile{OT}) where {OT}
     iavail = readgorzblock!(g)
     if iavail > 0
-        rows = Tables.namedtupleiterator(CSV.Rows(IOBuffer(view(g.inflated, 1:iavail));
+        rows = Tables.namedtupleiterator(CSV.Rows(g.inflated[1:iavail];
                                                   delim = "\t",
                                                   header = [OT.parameters[1]...],
                                                   types = [OT.parameters[2].parameters...]))
@@ -246,7 +246,7 @@ function Base.iterate(g::GorzFile{OT}, state) where {OT}
             # try to get new one
             iavail = readgorzblock!(g)
             if iavail > 0 
-                rows = Tables.namedtupleiterator(CSV.Rows(IOBuffer(view(g.inflated, 1:iavail));
+                rows = Tables.namedtupleiterator(CSV.Rows(g.inflated[1:iavail];
                                                           delim = "\t",
                                                           header = [OT.parameters[1]...],
                                                           types = [OT.parameters[2].parameters...]))
