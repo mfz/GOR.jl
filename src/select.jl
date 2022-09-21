@@ -6,10 +6,6 @@
 # NamedTuple{(columns to select)}(intuple)
 
 
-
-
-
-
 export select
 
 using Tables

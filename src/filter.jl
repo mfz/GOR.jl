@@ -35,7 +35,7 @@ function Base.iterate(m::Filter{I,F}, state) where {I,F}
 
     while true
         # done
-        elt_s == nothing && return nothing
+        elt_s === nothing && return nothing
 
         # predicate fulfilled
         m.predicate(elt_s[1]) && return elt_s[1], iterate(m.rows, elt_s[2])

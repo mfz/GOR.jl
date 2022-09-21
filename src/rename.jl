@@ -15,7 +15,7 @@ end
 
 """
     rename(rows, args::Pair...)
-    rows |> rename(args::Pairs...)
+    rows |> rename(args::Pair...)
 
 Rename columns in genome ordered stream `rows`. 
 Old and new column names are specified as `:oldcol => :newcol`.
@@ -51,7 +51,7 @@ end
 
 function Base.iterate(r::Rename{I,O}, state) where {I,O}
     elt_s = state
-    elt_s == nothing && return nothing
-    O(elt_s[1]), iterate(r.rows, elt_s[2])
+    elt_s === nothing && return nothing
+    O(Tuple(elt_s[1])), iterate(r.rows, elt_s[2])
 end
 

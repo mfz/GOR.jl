@@ -1,3 +1,4 @@
+using InlineStrings: String7
 
 @testset "Join" begin
 
@@ -8,7 +9,8 @@
 
     @test left |> GOR.join(right) |> collect |> length == 100
 
-    @test eltype(j) == NamedTuple{(:Chrom, :Pos, :Val, :Chromx, :Posx, :Valx),Tuple{String,Int64,String,String,Int64,String}}
+    @test eltype(j) == NamedTuple{(:Chrom, :Pos, :Val, :Chromx, :Posx, :Valx),
+        Tuple{String7,Int64,String7,String7,Int64,String7}}
 
 
     using DataFrames, Tables

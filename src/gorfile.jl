@@ -258,9 +258,9 @@ function Base.iterate(g::GorzFile{OT}, state) where {OT}
         end
 
         # beyond last record to report
-        g.last != nothing && (elt_s[1][1], elt_s[1][2]) > g.last && return nothing
+        g.last !== nothing && (elt_s[1][1], elt_s[1][2]) > g.last && return nothing
 
-        if g.first == nothing || (elt_s[1][1], elt_s[1][2]) >= g.first
+        if g.first === nothing || (elt_s[1][1], elt_s[1][2]) >= g.first
             return elt_s[1], (rows, iterate(rows, elt_s[2]))
         end
 

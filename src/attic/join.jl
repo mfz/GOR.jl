@@ -108,7 +108,7 @@ function Base.iterate(j::AbstractJoin)
     lelt_s = iterate(j.left)
     relt_s = iterate(j.right)
     
-    lelt_s == nothing && return nothing
+    lelt_s === nothing && return nothing
     
     rq = Vector{eltype(j.right)}()
     
@@ -135,7 +135,7 @@ function Base.iterate(j::InnerJoin{L,R}, state) where {L,R}
 
 	if rqidx > length(rq)
 	    lelt_s = iterate(j.left, lelt_s[2])
-	    lelt_s == nothing && return nothing
+	    lelt_s === nothing && return nothing
 	    lelt_s, relt_s, rq, rqidx = advance_right!(j, (lelt_s, relt_s, rq, rqidx))
 	end
 
@@ -162,7 +162,7 @@ function Base.iterate(j::LeftJoin{L,R}, state) where {L,R}
 
 	if rqidx > length(rq)
 	    lelt_s = iterate(j.left, lelt_s[2])
-	    lelt_s == nothing && return nothing
+	    lelt_s === nothing && return nothing
 	    lelt_s, relt_s, rq, rqidx = advance_right!(j, (lelt_s, relt_s, rq, rqidx))
 	end
 

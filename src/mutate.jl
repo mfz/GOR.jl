@@ -64,6 +64,6 @@ end
 
 function Base.iterate(m::Mutate{I,F,C,M}, state) where {I,F,C,M}
     elt_s = state
-    elt_s == nothing && return nothing
+    elt_s === nothing && return nothing
     M(Base.merge(elt_s[1], NamedTuple{C}(m.func(elt_s[1])))), iterate(m.rows, elt_s[2])
 end    

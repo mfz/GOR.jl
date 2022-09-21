@@ -54,11 +54,11 @@ function Base.iterate(m::Merge{L,R,M}, state) where {L,R,M}
 
         lelt_s == relt_s == nothing && return nothing
 
-        if lelt_s == nothing 
+        if lelt_s === nothing 
             return fill_named_tuple(relt_s[1], M), (lelt_s, iterate(m.right, relt_s[2]))
         end
         
-        if relt_s == nothing
+        if relt_s === nothing
             return fill_named_tuple(lelt_s[1], M), (iterate(m.left, lelt_s[2]), relt_s)
         end
 

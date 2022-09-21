@@ -42,7 +42,7 @@ Base.length(m::Map{I,F,M}) where {I,F,M} = Base.length(m.rows)
 Tables.istable(m::Map{I,F,M}) where {I,F,M} = true
 Tables.rowaccess(m::Map{I,F,M}) where {I,F,M} = true
 Tables.schema(m::Map{I,F,M}) where {I,F,M} = Tables.Schema(M)
-
+Tables.rows(m::Map{I,F,M}) where {I,F,M} = collect(m)
 
 function Base.iterate(m::Map{I,F,M}) where {I,F,M}
     elt_s = iterate(m.rows)
@@ -52,6 +52,6 @@ end
 
 function Base.iterate(m::Map{I,F,M}, state) where {I,F,M}
     elt_s = state
-    elt_s == nothing && return nothing
+    elt_s === nothing && return nothing
     M(m.func(elt_s[1])), iterate(m.rows, elt_s[2])
 end    

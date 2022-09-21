@@ -58,3 +58,4 @@ To support the Tables.jl interface, also implement
 - `Tables.istable(i::Iter)`
 - `Tables.rowaccess(i::Iter)`
 - `Tables.schema(i::Iter)`
+- `Tables.rows(i::Iter)`

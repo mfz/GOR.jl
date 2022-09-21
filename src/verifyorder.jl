@@ -23,7 +23,7 @@ end
 
 function Base.iterate(v::VerifyOrder)
     elt_s = iterate(v.rows)
-    elt_s == nothing && return nothing
+    elt_s === nothing && return nothing
     elt, s = elt_s
     return elt, elt_s
 end
@@ -32,7 +32,7 @@ end
 function Base.iterate(v::VerifyOrder, last_s)
     last, s = last_s
     elt_s = iterate(v.rows, s)
-    elt_s == nothing && return nothing
+    elt_s === nothing && return nothing
     elt, s = elt_s
     
     if (last.Chrom, last.Pos) > (elt.Chrom, elt.Pos)

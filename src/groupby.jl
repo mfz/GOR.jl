@@ -126,7 +126,7 @@ function advance_group(g::GroupBy{I, ET}, row_iterstate) where {I,ET}
         fit!(statsdict[key], row_iterstate[1])
 
         row_iterstate = iterate(g.iter, row_iterstate[2])
-        row_iterstate == nothing && break
+        row_iterstate === nothing && break
         
         nextbin = genomicbin(g, row_iterstate[1])
         nextbin != bin && break
@@ -141,7 +141,7 @@ end
 
 function Base.iterate(g::GroupBy)
     row_iterstate = iterate(g.iter)
-    row_iterstate == nothing && return nothing
+    row_iterstate === nothing && return nothing
    
     state = row_iterstate, [], 1 
     iterate(g, state)
@@ -157,7 +157,7 @@ function Base.iterate(g::GroupBy, state)
             return stats[statsidx], (row_iterstate, stats, statsidx + 1)
         end
 
-        row_iterstate == nothing && return nothing
+        row_iterstate === nothing && return nothing
 
         row_iterstate, stats, statsidx = advance_group(g, row_iterstate)
         

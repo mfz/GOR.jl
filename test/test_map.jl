@@ -1,6 +1,7 @@
 @testset "Map" begin
 
     using Tables, DataFrames
+
     df = Tables.namedtupleiterator(DataFrame(Chrom = repeat(["chr1"], 3), Pos = [1,2,3]))
 
     m = df |> GOR.map(x -> Base.merge(x, (Value = x.Pos * 2,)))

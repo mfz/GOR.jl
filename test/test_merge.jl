@@ -1,3 +1,4 @@
+import InlineStrings
 
 @testset "Merge" begin
 
@@ -7,7 +8,7 @@
     m = left |> GOR.merge(right)
     @test m |> collect |> length == 200
 
-    @test eltype(m) == NamedTuple{(:Chrom, :Pos, :Val), Tuple{String, Int64, String}}
+    @test eltype(m) == NamedTuple{(:Chrom, :Pos, :Val), Tuple{InlineStrings.String7, Int64, InlineStrings.String7}}
 
     using DataFrames
 
@@ -30,7 +31,7 @@
     @test Tables.istable(m)
     @test Tables.rowaccess(m)
     @test Tables.schema(m).names == (:Chrom, :Pos, :Val)
-    @test Tables.schema(m).types == (String, Int64, String)
-    @test Tables.schema(m) == Tables.Schema{(:Chrom, :Pos, :Val), Tuple{String, Int64, String}}()
+    @test Tables.schema(m).types == (InlineStrings.String7, Int64, InlineStrings.String7)
+    @test Tables.schema(m) == Tables.Schema{(:Chrom, :Pos, :Val), Tuple{InlineStrings.String7, Int64, InlineStrings.String7}}()
 
 end

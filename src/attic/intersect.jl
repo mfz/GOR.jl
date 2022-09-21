@@ -64,7 +64,7 @@ gorintersect(right) = left -> gorintersect(left, right)
 function Base.iterate(i::Intersection{L,R}) where {L,R}
 
     lelt_s = iterate(i.left)
-    lelt_s == nothing && return nothing
+    lelt_s === nothing && return nothing
     
     relt_s = iterate(i.right)
 
