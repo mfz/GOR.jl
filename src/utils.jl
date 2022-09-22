@@ -93,5 +93,5 @@ end
 end
 
 # do not export this
-# should be called as GorJulia.pkgpath
+# should be called as GOR.pkgpath
 pkgpath(paths...) = joinpath(@__DIR__, "..", paths...)

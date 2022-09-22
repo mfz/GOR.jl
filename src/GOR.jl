@@ -7,6 +7,7 @@ include("abstractgoriter.jl")
 
 include("gorfile.jl")           
 include("parquetfile.jl")
+include("arrowfile.jl")
 include("utils.jl")
 
 include("verifyorder.jl")
