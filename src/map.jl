@@ -1,9 +1,10 @@
 
 # map: apply function to elts of iterator
-#
-# PROBLEM: Type inference in NamedTuples does not work for Union{Missing, T} types
 
-export map
+
+export map,
+       transform,
+       mutate
 
 struct Map{I,F,M} <: AbstractGorIter{I}
     rows::I
@@ -16,21 +17,21 @@ end
 
 Apply function `func` to elements of genome ordered stream `rows`.
 The function `func` should return a `NamedTuple`.
-
-NOTE: Julia cannot infer the type of NamedTuples with `Union{Missing,T}`.
-This means that if the input stream `rows` has columns of type `Union{Missing,T}`,
-the pipeline probably fails. 
 """
 map(rows, func) = Map{typeof(rows), typeof(func),
-                         Base.return_types(func, (eltype(rows),))[1]}(rows, func)
+                      returntype(func, (eltype(rows),))}(rows, func)
 map(func) = rows -> map(rows, func)
 
 
 
-#transform = map
+transform = map
 
-#mutate(rows, func) = gormap(rows, row -> merge(row, func(row)))
-#mutate(func) = rows -> mutate(rows, func)
+function mutate(rows, func) 
+    @assert Base.return_types(func, (eltype(rows),))[1] <: NamedTuple  "func needs to return a NamedTuple"
+    map(rows, row -> Base.merge(row, func(row)))
+end
+     
+mutate(func) = rows -> mutate(rows, func)
 
 
 Base.IteratorEltype(::Type{Map{I,F,M}}) where {I,F,M} = Base.HasEltype()

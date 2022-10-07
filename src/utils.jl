@@ -92,6 +92,41 @@ end
 
 end
 
+
+# Julia provides function Base.return_types to provide return types of a function
+# given the types of its inputs
+#
+# But there is a difference when the inputs contain a Union missing type
+#
+# > Base.return_types(x -> (a=2x,b=x+1), (Union{Missing, Int64},))
+# 1-element Vector{Any}:
+# NamedTuple{(:a, :b), _A} where _A<:Tuple{Union{Missing, Int64}, Union{Missing, Int64}}
+# 
+# > Base.return_types(x -> (a=2x,b=x+1), (Int64,))
+# 1-element Vector{Any}:
+# NamedTuple{(:a, :b), Tuple{Int64, Int64}}
+#
+# Here we define a function that works in both cases
+
+"""
+
+Infer return type of function func -> NamedTuple given the types of its input arguments
+"""
+function returntype(func, intype)
+    rt = Base.return_types(func, intype)[1]
+
+    @assert rt <: NamedTuple "func needs to return a NamedTuple"
+
+    if typeof(rt) === DataType
+        return NamedTuple{rt.parameters[1], rt.parameters[2]}
+    elseif typeof(rt) === UnionAll
+        return NamedTuple{rt.body.parameters[1], rt.var.ub}
+    else
+        error("Unknown type: $(typeof(rt))")
+    end
+end 
+
+
 # do not export this
 # should be called as GOR.pkgpath
 pkgpath(paths...) = joinpath(@__DIR__, "..", paths...)

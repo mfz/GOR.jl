@@ -27,7 +27,8 @@ function mutate(rows, cols::Tuple, func)
     types = sch.types
     name2type = Dict{Symbol, Any}(zip(names, types))
     fnames = cols
-    ftypes = Base.return_types(func, (eltype(rows),))[1].parameters
+    ftypes = Base.return_types(func, (eltype(rows),))[1].parameters  # THIS DOES NOT WORK FOR UNION MISSING TYPES
+                                                                     # USE utils.returntype INSTEAD
     for (n,t) in zip(fnames, ftypes)
         name2type[n] = t
     end
